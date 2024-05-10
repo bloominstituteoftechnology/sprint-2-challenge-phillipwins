@@ -6,35 +6,105 @@
   <script id="challenge">
     // 👉 CHALLENGE 1
     function profileActivation(profile, reason) {
-      if (profile.active === true && !reason  ) {
+      if (profile.active === true && !reason) {
         return "confirm status manually"
       }
 
-      if (profile.active === true ) {
-          profile.active = false
+      if (profile.active === true) {
+        profile.active = false
 
-          profile.reason = reason
-          return profile
-      } 
+        profile.reason = reason
+        return profile
+      }
       if (profile.active === false) {
         profile.active = true
         delete profile.reason
         return profile
-      } 
-    };  
-    
+      }
+    };
+
     // 👉 CHALLENGE 2
     function mineSweeper(grid, x, y) {
+      if (y < 1 || y > 3 || x < 1 || x > 3) {
+        return "invalid coordinates"
+      }
+      const row = grid[y - 1]
+
+      const square = row[x - 1]
+
+      if (square == "🟥") {
+
+        return "🟥 💀";
+      }
+
+
+      if (square == "🟦") {
+
+        return "🟦 🥳";
+      }
 
     }
 
     // 👉 CHALLENGE 3
     function booleanize(obj) {
+      for (const property in obj) { 
+        const value = obj[property];
+      
+        
+        if (value === 0) {
+          obj[property] = false 
+        } 
+
+        if (value === 1) {
+          obj[property] = true
+        } 
+
+        if (value === null) {
+          delete obj[property];
+
+        } 
+        if (property.length > 9 ) {
+          return "shorten all prop names to 9 chars or less"
+        }
+          
+
+      } 
+      
+      return obj
 
     }
 
     // 👉 CHALLENGE 4
     function scrub(text, forbidden) {
+      
+      const textArray = text.split(" ")
+
+      for (let index = 0; index < textArray.length; index++) {
+        
+        const forbiddenWordIndex = forbidden.indexOf(textArray[index])
+        
+        if (forbiddenWordIndex !== -1) {
+
+          const forbiddenWord = forbidden[forbiddenWordIndex]
+          const forbiddenWordLength = forbiddenWord.length
+
+          let scrubbedString = "";
+
+          for (let index = 0; index < forbiddenWordLength; index++) {
+            scrubbedString += 'x'
+          }
+
+          textArray[index] = scrubbedString
+        
+        
+        }
+
+      }
+
+      const textJoined = textArray.join(" ")
+
+      return textJoined;
+      
 
     }
 
